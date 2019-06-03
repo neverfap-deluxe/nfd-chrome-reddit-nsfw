@@ -19,6 +19,7 @@ chrome.storage.sync.get('selectedMeditation', function (data) {
 
 previous__meditation__button.onclick = function(element) {
   chrome.storage.sync.get(['selectedMeditation', 'meditationsList'], function (data) {
+    console.log('here');
     const { isFirstOrLast, newMeditation } = getNextMeditation(data.selectedMeditation, data.meditationsList, -1);
 
     console.log(isFirstOrLast, newMeditation);
