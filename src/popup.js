@@ -1,46 +1,31 @@
 let wipePage = document.getElementById('wipePage');
-let previous = document.getElementById('previous');
-let next = document.getElementById('next');
 
+let previous__meditation__button = document.getElementById('previous__meditation__button');
+let next__meditation__button = document.getElementById('next__meditation__button');
+let meditation__audio__player = document.getElementById('meditation__audio__player');;
+let meditation__title__single = document.getElementById('meditation__title__single');;
 
-previous.onclick = function(element) {
-  chrome.storage.sync.get('meditationList', function(data) {
-    console.log(data)
-  }
-}
+chrome.storage.sync.get('selectedMeditation', function (data) {
+  const selectedMeditationUrl = data.selectedMeditation.mp3Url;
+  const selectedMeditationTitle = data.selectedMeditation.title;
 
-next.onclick = function(element) {
+  meditation__audio__player.src = selectedMeditationUrl;
+  meditation__title__single.innerHTML = selectedMeditationTitle;
+});
 
-}
-
-wipePage.onclick = function(element) {
-  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    chrome.tabs.executeScript(
-        tabs[0].id,
-        {code: 'document.body.style.display = "none";'});
+previous__meditation__button.onclick = function(element) {
+  chrome.storage.sync.get('meditationsList', function(data) {
+    
+    console.log(data);
   });
 };
 
-chrome.storage.sync.get('meditationList', function(data) {
-  console.log(data)
-  // changeColor.style.backgroundColor = data.color;
-  // changeColor.setAttribute('value', data.color);
-});
+next__meditation__button.onclick = function (element) { };
 
-
-// let changeColor = document.getElementById('changeColor');
-
-// chrome.storage.sync.get('color', function(data) {
-//   changeColor.style.backgroundColor = data.color;
-//   changeColor.setAttribute('value', data.color);
-// });
-
-// changeColor.onclick = function(element) {
-//   // let color = element.target.value;
-//   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-//     chrome.tabs.executeScript(
-//         tabs[0].id,
-//         {code: 'document.body.style.display = "none";'});
-//         // {code: 'document.body.style.display = "' + color + '";'});
-//   });
-// };
+wipePage.onclick = function(element) {
+  chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+    chrome.tabs.executeScript(tabs[0].id, {
+      code: 'document.body.style.display = "none";',
+    });
+  });
+};
