@@ -8,14 +8,16 @@ let meditation__title__single = document.getElementById('meditation__title__sing
 chrome.storage.sync.get('selectedMeditation', function (data) {
   const selectedMeditationUrl = data.selectedMeditation.mp3Url;
   const selectedMeditationTitle = data.selectedMeditation.title;
-
+  console.log(data.selectedMeditation);
+  console.log(selectedMeditationTitle)
   meditation__audio__player.src = selectedMeditationUrl;
   meditation__title__single.innerHTML = selectedMeditationTitle;
+
+  meditation__audio__player.load();
 });
 
 previous__meditation__button.onclick = function(element) {
   chrome.storage.sync.get('meditationsList', function(data) {
-    
     console.log(data);
   });
 };
