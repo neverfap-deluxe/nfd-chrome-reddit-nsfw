@@ -3,9 +3,32 @@
   <head>
     <style>
       .container {
-        width: 500px;
-        height: 500px;
+        /* position: fixed;
+        top: 0;
+        right: 0; */
+        width: 465px;
+        height: 465px;
         padding: 1rem;
+      }
+      .top__row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      #close__popup {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 4px solid black;
+        cursor: pointer;
+      }
+      #close__popup:hover {
+        box-shadow: -5px 5px 0px 0px cyan;
+        transition: .2s box-shadow;
+      }
+      .close__popup__inside {
+        font-size: 24px;
+        padding: 0.3rem;
       }
       .row {
         display: flex;
@@ -63,13 +86,18 @@
   </head>
   <body>
     <div class="container">
-      <!-- <div class="topRow">
-        <a href="https://neverfapdeluxe.com/">Website</a>
-      </div> -->
-      <h1>NeverFap Deluxe</h1>
+
+      <!-- TOP ROW -->
+      <div class="top__row">
+        <h1>NeverFap Deluxe</h1>
+        <div id="close__popup">
+          <span class="close__popup__inside">x</span>
+        </div>
+      </div>
 
       <hr/>
 
+      <!-- MIDDLE ROW -->
       <div class="row" styl>
         <div class="module">
           <h2>Step 1.</h2>
@@ -92,6 +120,7 @@
 
       <hr/>
 
+      <!-- BOTTOM ROW -->
       <div class="meditation__row">
         <div class="meditation__title__row">
           <h2 class="meditation__title">Meditation</h2>

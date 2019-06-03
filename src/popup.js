@@ -1,10 +1,15 @@
 let wipePage = document.getElementById('wipePage');
+let close__popup = document.getElementById('close__popup');
 
 let previous__meditation__button = document.getElementById('previous__meditation__button');
 let next__meditation__button = document.getElementById('next__meditation__button');
 
 let meditation__audio__player = document.getElementById('meditation__audio__player');;
 let meditation__title__single = document.getElementById('meditation__title__single');;
+
+close__popup.onclick = function(element) {
+  window.close();
+};
 
 chrome.storage.sync.get('selectedMeditation', function (data) {
   setNewMeditation(data.selectedMeditation);
@@ -16,6 +21,7 @@ previous__meditation__button.onclick = function(element) {
   chrome.storage.sync.get(['selectedMeditation', 'meditationsList'], function (data) {
     const { isFirstOrLast, newMeditation } = getNextMeditation(data.selectedMeditation, data.meditationsList, -1);
 
+    console.log(isFirstOrLast, newMeditation);
     disappearOrAppearFirstAndLast(isFirstOrLast, next__meditation__button);
     setNewMeditation(newMeditation);
   });
@@ -24,8 +30,6 @@ previous__meditation__button.onclick = function(element) {
 next__meditation__button.onclick = function (element) {
   chrome.storage.sync.get(['selectedMeditation', 'meditationsList'], function (data) {
     const { isFirstOrLast, newMeditation } = getNextMeditation(data.selectedMeditation, data.meditationsList, 1);
-
-    console.log(isFirstOrLast, newMeditation);
 
     disappearOrAppearFirstAndLast(isFirstOrLast, previous__meditation__button);
     setNewMeditation(newMeditation);
@@ -42,17 +46,18 @@ wipePage.onclick = function(element) {
 
 function getNextMeditation(selectedMeditation, meditationList, movement) {
   const isFirstOrLast = selectedMeditation.position === 0 || meditationList.length === (selectedMeditation.position + 1) ? true : false;
+  // the problem is that this is always true.
 
   const newPosition = selectedMeditation.position + movement;
   const validateNewPosition = newPosition < 0 || newPosition >= meditationList.length ? selectedMeditation.position : newPosition;
   const newMeditation = meditationList[validateNewPosition];
 
-  chrome.storage.sync.set({ selectedMeditation: newMeditation }, function (data) {
-    return {
-      isFirstOrLast,
-      newMeditation,
-    }
-  });
+  chrome.storage.sync.set({ selectedMeditation: newMeditation }, function (data) {});
+
+  return {
+    isFirstOrLast,
+    newMeditation,
+  }
 }
 
 function setNewMeditation(selectedMeditation) {
