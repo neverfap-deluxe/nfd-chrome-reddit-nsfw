@@ -1,7 +1,7 @@
 {
   "name": "NeverFap Deluxe",
   "version": "1.0",
-  "description": "NeverFap Deluxe is a comprehensive porn addiction recovery process which aims to help people overcome porn addiction.",
+  "description": "NeverFap Deluxe is a comprehensive porn addiction recovery process.",
   "permissions": ["activeTab", "declarativeContent", "storage"],
   "background": {
     "scripts": ["src/background.js"],
