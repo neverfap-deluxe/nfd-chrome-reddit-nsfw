@@ -22,6 +22,7 @@
         border: 4px solid black;
         cursor: pointer;
         width: 36px;
+        height: 36px;
       }
       #close__popup:hover {
         box-shadow: -5px 5px 0px 0px cyan;
@@ -29,7 +30,8 @@
       }
       .close__popup__inside {
         font-size: 30px;
-        padding: 0.3rem;
+        position: relative;
+        bottom: 0.14rem;
       }
       .row {
         display: flex;
@@ -125,13 +127,16 @@
       <div class="meditation__row">
         <div class="meditation__title__row">
           <h2 class="meditation__title">Meditation</h2>
-          <div id="previous__meditation__button" class="meditation__button wipePage previous__meditation__button">Previous Meditation</div>
-          <div id="next__meditation__button" class="meditation__button wipePage next__meditation__button">Next Meditation</div>
+          <!-- <div id="previous__meditation__button" class="meditation__button wipePage previous__meditation__button">Previous Meditation</div>
+          <div id="next__meditation__button" class="meditation__button wipePage next__meditation__button">Next Meditation</div> -->
         </div>
-        <h3 id="meditation__title__single"></h3>
+        <!-- <h3 id="meditation__title__single"></h3>
         <div class="module">
           <audio id="meditation__audio__player" src="" controls />
-        </div>
+        </div> -->
+
+        <iframe src="https://castbox.fm/app/castbox/player/id2113294?v=8.0.190531&autoplay=0" frameborder="0" width="100%" height="400"></iframe>
+
       </div>
 
     </div>
