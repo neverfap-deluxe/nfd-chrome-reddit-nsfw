@@ -1,6 +1,3 @@
+# NeverFap Deluxe Chrome Extension
 
-// Tutorial.
-https://developer.chrome.com/extensions/getstarted
-
-// Package.
-https://github.com/oncletom/crx
+This is the Chrome Extension for NeverFap Deluxe
