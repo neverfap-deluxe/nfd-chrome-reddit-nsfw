@@ -7,6 +7,9 @@ let next__meditation__button = document.getElementById('next__meditation__button
 let meditation__audio__player = document.getElementById('meditation__audio__player');;
 let meditation__title__single = document.getElementById('meditation__title__single');;
 
+
+
+
 close__popup.onclick = function(element) {
   window.close();
 };
