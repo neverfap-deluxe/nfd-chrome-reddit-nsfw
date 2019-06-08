@@ -40,13 +40,13 @@ close__popup.onclick = function(element) {
 //   });
 // };
 
-// wipePage.onclick = function(element) {
-//   chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-//     chrome.tabs.executeScript(tabs[0].id, {
-//       code: 'document.body.style.display = "none";',
-//     });
-//   });
-// };
+wipePage.onclick = function(element) {
+  chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+    chrome.tabs.executeScript(tabs[0].id, {
+      code: 'document.body.style.display = "none";',
+    });
+  });
+};
 
 // function getNextMeditation(selectedMeditation, meditationList, movement) {
 //   const isFirstOrLast = selectedMeditation.position === 0 || meditationList.length === (selectedMeditation.position + 1) ? true : false;
