@@ -1,5 +1,6 @@
 {
-  "name": "NeverFap Deluxe",
+  "name": "NeverFap Deluxe NSFW Reddit Blocker",
+  "short_name": "nfd-nsfw-reddit",
   "version": "1.0",
   "description": "NeverFap Deluxe is a comprehensive porn addiction recovery process.",
   "permissions": ["activeTab", "declarativeContent", "storage"],

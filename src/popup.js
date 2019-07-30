@@ -9,75 +9,61 @@ let close__popup = document.getElementById('close__popup');
 
 
 
+function mainAlgorithm() {
+	if (location.origin.includes("reddit")) {
+		var splitLocation = location.href.split('/')
+		blockDirectNSFWPage(splitLocation)
+		removeNSFWPostsFromFeed()
+	}
+}
 
-close__popup.onclick = function(element) {
-  window.close();
-};
+function blockDirectNSFWPage(splitLocation) {
+	if (splitLocation.length === 6) {
+		var r = splitLocation[3];
+		var subreddit_name = splitLocation[4];
+		var nsfwSubredditClassName = `.SubredditVars-${r}-${subreddit_name}`;
+		var textToSearch = 'nsfwAdult content';
 
-// chrome.storage.sync.get('selectedMeditation', function (data) {
-//   setNewMeditation(data.selectedMeditation);
+		var subreditvars = document.querySelectorAll(nsfwSubredditClassName);
 
-//   previous__meditation__button.style.visibility = 'hidden';
-// });
+		if (!!subreditvars) {
+			for(let i = 0; i < subreditvars.length; i++) {
+        console.log(subreditvars[i].textContent.includes(textToSearch))
+        
+				if (subreditvars[i].textContent.includes(textToSearch)) {
+          document.body.innerHTML = `
+            <p style="padding: 1rem;">This is a NSFW Reddit.</p>
+            <p style="padding: 1rem;">Thank you NeverFap Deluxe!</p>
+          `;
+          break;
+					// window.close(); // this doesn't work in a script
+				}
+			}
+		} else {
+			throw new Error('Algorithm no longer works.');
+		}
+	}
+}
 
-// previous__meditation__button.onclick = function(element) {
-//   chrome.storage.sync.get(['selectedMeditation', 'meditationsList'], function (data) {
-//     console.log('here');
-//     const { isFirstOrLast, newMeditation } = getNextMeditation(data.selectedMeditation, data.meditationsList, -1);
+function removeNSFWPostsFromFeed() {
+	// this will need to be reactive, because more posts will continue to load.
+}
 
-//     console.log(isFirstOrLast, newMeditation);
-//     disappearOrAppearFirstAndLast(isFirstOrLast, next__meditation__button);
-//     setNewMeditation(newMeditation);
-//   });
-// };
 
-// next__meditation__button.onclick = function (element) {
-//   chrome.storage.sync.get(['selectedMeditation', 'meditationsList'], function (data) {
-//     const { isFirstOrLast, newMeditation } = getNextMeditation(data.selectedMeditation, data.meditationsList, 1);
+// not used.
+var elms = document.querySelector(".cakecake");
+var len = elms.length;
 
-//     disappearOrAppearFirstAndLast(isFirstOrLast, previous__meditation__button);
-//     setNewMeditation(newMeditation);
-//   });
-// };
+for(var ii = 0; ii < len; ii++) {
+    var myChildred = elms[ii].childNodes;
+    len2 = myChildred.length;
+    for (var jj = 0; jj < len2; jj++) {
+        if(myChildred[jj].nodeType === 3) {
+            console.log(myChildred[jj].nodeValue);
 
-wipePage.onclick = function(element) {
-  chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-    chrome.tabs.executeScript(tabs[0].id, {
-      code: 'document.body.style.display = "none";',
-    });
-  });
-};
+            // example on update a text node's value
+            myChildred[jj].nodeValue = myChildred[jj].nodeValue.replace(/test/,"123");
+        }
+    }
+}
 
-// function getNextMeditation(selectedMeditation, meditationList, movement) {
-//   const isFirstOrLast = selectedMeditation.position === 0 || meditationList.length === (selectedMeditation.position + 1) ? true : false;
-//   // the problem is that this is always true.
-
-//   const newPosition = selectedMeditation.position + movement;
-//   const validateNewPosition = newPosition < 0 || newPosition >= meditationList.length ? selectedMeditation.position : newPosition;
-//   const newMeditation = meditationList[validateNewPosition];
-
-//   chrome.storage.sync.set({ selectedMeditation: newMeditation }, function (data) {});
-
-//   return {
-//     isFirstOrLast,
-//     newMeditation,
-//   }
-// }
-
-// function setNewMeditation(selectedMeditation) {
-//   const selectedMeditationUrl = selectedMeditation.mp3Url;
-//   const selectedMeditationTitle = selectedMeditation.title;
-
-//   meditation__audio__player.src = selectedMeditationUrl;
-//   meditation__title__single.innerHTML = selectedMeditationTitle;
-
-//   meditation__audio__player.load();
-// }
-
-// function disappearOrAppearFirstAndLast(isFirstOrLast, component) {
-//   if (isFirstOrLast) {
-//     component.style.visibility = 'hidden';
-//   } else {
-//     component.style.visibility = 'visible';
-//   }
-// }

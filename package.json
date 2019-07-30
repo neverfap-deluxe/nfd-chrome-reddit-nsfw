@@ -1,16 +1,14 @@
 {
-  "name": "nfd-chrome",
-  "version": "0.0.2",
+  "name": "nfd-chrome-nsfw-reddit",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "node util/generatePackage.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "crx": "^5.0.0"
   }
 }
